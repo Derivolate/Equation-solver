@@ -16,12 +16,14 @@ public class Base_class {
 		
 		String left = Side(true);
 		String right = Side(false);
+		
 		scanner1.close();
 		left.replace("\\s", "");
 		right.replace("\\s", "");
 		System.out.println(left +" = "+ right);
-		countLeft(location, left);
-		countRight(location, right);
+		
+		count(location, left);
+		count(location, right);
 		Solve();
 	}
 	/*
@@ -41,14 +43,16 @@ public class Base_class {
 	/*
 	 * Solves the left side of the equation
 	 */
-	public static void countLeft(int location, String left){
+
+	public static void count(int location, String currentSide){
 		do {
+			boolean Final;
 			location = 0;
-			boolean Final = false;
-			if (left.indexOf('+', location) != -1){
-				location = left.indexOf('+', location);
+			if (currentSide.indexOf('+', location) != -1){
+				location = currentSide.indexOf('+', location);
+				Final = false;
 			}else{
-				location = left.length();
+				location = currentSide.length() - 1;
 				Final = true;
 			}
 //			int locadd = left.indexOf('+', location);
@@ -58,8 +62,8 @@ public class Base_class {
 //			else if (locsub < locadd && locsub != -1)location = locsub;
 //			else location = left.length();
 			
-			if (left.charAt(location - 1) == 'x') {
-				varleft = varleft + Character.getNumericValue(left.charAt(location - (Final == false? 2 : 1)));
+			if (currentSide.charAt(Final == false? location -1 : location) == 'x') {
+				varleft = varleft + Character.getNumericValue(currentSide.charAt(location - (Final == false? 2 : 1)));
 //				try{
 //					if (left.charAt(location -3) == '-')varleft = varleft - Character.getNumericValue(left.charAt(location - 2));
 //					else varleft = varleft + Character.getNumericValue(left.charAt(location - 2));
@@ -67,7 +71,7 @@ public class Base_class {
 //						varleft = varleft + Character.getNumericValue(left.charAt(location - 2));
 //					}
 			}else{
-				numleft = numleft + Character.getNumericValue(left.charAt(location - (Final == false? 1 : 0)));
+				numleft = numleft + Character.getNumericValue(currentSide.charAt(location - (Final == false? 1 : 0)));
 //				try{
 //					
 //					if (left.charAt(location -2) == '-')numleft = numleft - Character.getNumericValue(left.charAt(location - 1));
@@ -78,54 +82,9 @@ public class Base_class {
 				}
 			location ++;
 		
-		} while (location < left.length());
+		} while (location < currentSide.length());
 		System.out.println("numleft=" + numleft);
 		System.out.println("xleft=" + varleft);
-	}
-	/*
-	 * Counts the right side of the equation
-	 */
-	public static void countRight(int location, String right){
-		
-		do {
-			boolean Final = false;
-			location = 0;
-			if (right.indexOf('+', location) != -1){
-				location = right.indexOf('+', location);
-			}else{
-				location = right.length();
-				Final = true;
-			}
-//			int locadd = right.indexOf('+', location);
-//			int locsub = right.indexOf('-', location);
-//			
-//			if (locadd < locsub && locadd != -1)location = locadd;
-//			else if (locadd > locsub && locsub != -1)location = locsub;
-//			else location = right.length();
-			
-			if (right.charAt(location - 1) == 'x') {
-				varright = varright + Character.getNumericValue(right.charAt(location - (Final == false? 2 : 1)));
-//				try{
-//					if (right.charAt(location -3) == '-')varright = varright - Character.getNumericValue(right.charAt(location - 2));
-//					else varright = varright + Character.getNumericValue(right.charAt(location - 2));
-//					}catch(java.lang.StringIndexOutOfBoundsException e){
-//						varright = varright + Character.getNumericValue(right.charAt(location - 2));
-//					}
-			}else{
-				numright = numright + Character.getNumericValue(right.charAt(location - (Final == false? 1 : 0)));
-//				try{
-//					
-//					if (right.charAt(location -2) == '-')numright = numright - Character.getNumericValue(right.charAt(location - 1));
-//					else numright = numright + Character.getNumericValue(right.charAt(location - 1));
-//					}catch (java.lang.StringIndexOutOfBoundsException e){
-//						numright = numright + Character.getNumericValue(right.charAt(location - 1));
-//					}
-				}
-			location ++;
-		} while (location < right.length());
-		
-		System.out.println("numright=" + numright);
-		System.out.println("xright=" + varright);
 	}
 	
 	public static void Solve(){
