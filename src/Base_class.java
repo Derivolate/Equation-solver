@@ -1,20 +1,19 @@
 import java.util.Scanner;
 
+/**
+ * @author Bastiaan
+ *
+ */
 public class Base_class {
-	
 	
 	static int varleft = 0;
 	static int varright = 0;
-
 	static int numleft = 0;
 	static int numright = 0;
-	
 	static Boolean isLeft;
-	
 	static Scanner scanner1 = new Scanner(System.in);
 	
 	public static void main(String args[]){
-		int location = 0;
 		
 		String left = Side(true);
 		String right = Side(false);
@@ -46,12 +45,11 @@ public class Base_class {
 			return scanner1.nextLine();
 		}
 	}
-	
 	/*
-	 * Solves the left side of the equation
+	 *Counts the x's in the side (currentside = left || right)
 	 */
-
 	public static Integer countVar(String currentSide){
+		
 		Integer tempVar = 0;
 		Integer location = 0;
 		do {
@@ -64,9 +62,14 @@ public class Base_class {
 			location ++;
 		
 		} while (location < currentSide.length());
+		
 		System.out.println((isLeft == true? "varleft = " : "varright = ") + tempVar);
 		return tempVar;
 	}
+	
+	/*
+	 *Counts the plain numbers in the side (currentside = left || right)
+	 */
 	public static Integer countNum(String currentSide){
 		Integer tempNum = 0;
 		Integer location = 0;
@@ -80,12 +83,14 @@ public class Base_class {
 			}
 			location ++;
 		}while(location < currentSide.length());
+		
 		System.out.println((isLeft == true? "numleft = " : "numright = ") + tempNum);
 		return tempNum;
 	}
-	public static Boolean Final(Integer location, String currentSide){
-		return (currentSide.indexOf('+', location) != -1? false : true);
-	}
+	/*
+	 * Gets the current location (the whole string of one side[left || right],
+	 *		the previous location, if there is any '+' left)
+	 */
 	public static Integer location(String currentSide, int location, Boolean Final){
 		if (Final != true){
 			return currentSide.indexOf('+', location);
@@ -94,6 +99,15 @@ public class Base_class {
 		}
 	}
 	
+	/*
+	 * Small function to determine if the location is at the end of the string
+	 */
+	public static boolean Final(Integer location, String currentSide){
+		return (currentSide.indexOf('+', location) != -1? false : true);
+	}
+	/*
+	 * Final method to solve the equation
+	 */
 	public static void Solve(){
 		double varfinal = 0;
 		double numfinal = 0;
