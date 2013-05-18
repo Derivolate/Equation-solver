@@ -6,31 +6,32 @@ import java.util.Scanner;
  */
 public class Base_class {
 	
-	static int varleft = 0;
-	static int varright = 0;
-	static int numleft = 0;
-	static int numright = 0;
+	static int varleft;
+	static int varright;
+	static int numleft;
+	static int numright;
 	static Boolean isLeft;
 	static Scanner scanner1 = new Scanner(System.in);
 	
 	public static void main(String args[]){
-		
-		String left = Side(true);
-		String right = Side(false);
-		
-		scanner1.close();
-		left.replace("\\s", "");
-		right.replace("\\s", "");
-		System.out.println(left +" = "+ right);
-		isLeft = true;
-		varleft = countVar(left);
-		isLeft = false;
-		varright = countVar(right);
-		isLeft = true;
-		numleft = countNum(left);
-		isLeft = false;
-		numright = countNum(right);
-		Solve();
+		Integer Loop = 1;
+		do{
+			varleft = varright = numleft = numright = 0;
+			String left = Side(true);
+			String right = Side(false);
+			left.replace("\\s", "");
+			right.replace("\\s", "");
+			System.out.println(left + " = " + right);
+			isLeft = true;
+			varleft = countVar(left);
+			isLeft = false;
+			varright = countVar(right);
+			isLeft = true;
+			numleft = countNum(left);
+			isLeft = false;
+			numright = countNum(right);
+			Solve();
+		}while(Loop != 0);
 	}
 	/*
 	 * Asks for left or right side of equation
@@ -108,7 +109,8 @@ public class Base_class {
 	/*
 	 * Final method to solve the equation
 	 */
-	public static void Solve(){
+	public static void Solve(
+){
 		double varfinal = 0;
 		double numfinal = 0;
 		if (varleft >= varright){
