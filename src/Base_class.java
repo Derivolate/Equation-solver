@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 /**
  * @author Bastiaan
  *
@@ -19,21 +18,22 @@ public class Base_class {
 			varleft = varright = numleft = numright = 0;
 			Equation = GetEquation();
 			String[] temp = Equation.split("=");
-			System.out.println(temp[1] + "\t" + temp[2]);
+			String left = temp[0];
+			String right = temp[1];
 //			String left = Side(true);
 //			String right = Side(false);
-//			left.replace("\\s", "");
-//			right.replace("\\s", "");
-//			System.out.println(left + " = " + right);
-//			isLeft = true;
-//			varleft = countVar(left);
-//			isLeft = false;
-//			varright = countVar(right);
-//			isLeft = true;
-//			numleft = countNum(left);
-//			isLeft = false;
-//			numright = countNum(right);
-//			Solve();
+			left.trim();
+			right.trim();
+			System.out.println(left + " = " + right);
+			isLeft = true;
+			varleft = countVar(left);
+			isLeft = false;
+			varright = countVar(right);
+			isLeft = true;
+			numleft = countNum(left);
+			isLeft = false;
+			numright = countNum(right);
+			Solve();
 		}while(Loop != 0);
 	}
 	public static String GetEquation() {
