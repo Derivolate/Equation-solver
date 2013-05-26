@@ -12,26 +12,34 @@ public class Base_class {
 	static int numright;
 	static Boolean isLeft;
 	static Scanner scanner1 = new Scanner(System.in);
-	
+	static String Equation;
 	public static void main(String args[]){
 		Integer Loop = 1;
 		do{
 			varleft = varright = numleft = numright = 0;
-			String left = Side(true);
-			String right = Side(false);
-			left.replace("\\s", "");
-			right.replace("\\s", "");
-			System.out.println(left + " = " + right);
-			isLeft = true;
-			varleft = countVar(left);
-			isLeft = false;
-			varright = countVar(right);
-			isLeft = true;
-			numleft = countNum(left);
-			isLeft = false;
-			numright = countNum(right);
-			Solve();
+			Equation = GetEquation();
+			String[] temp = Equation.split("=");
+			System.out.println(temp[1] + "\t" + temp[2]);
+//			String left = Side(true);
+//			String right = Side(false);
+//			left.replace("\\s", "");
+//			right.replace("\\s", "");
+//			System.out.println(left + " = " + right);
+//			isLeft = true;
+//			varleft = countVar(left);
+//			isLeft = false;
+//			varright = countVar(right);
+//			isLeft = true;
+//			numleft = countNum(left);
+//			isLeft = false;
+//			numright = countNum(right);
+//			Solve();
 		}while(Loop != 0);
+	}
+	public static String GetEquation() {
+		System.out.println("Equation: ");
+		return scanner1.nextLine();
+		
 	}
 	/*
 	 * Asks for left or right side of equation
