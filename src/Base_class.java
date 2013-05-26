@@ -20,8 +20,6 @@ public class Base_class {
 			String[] temp = Equation.split("=");
 			String left = temp[0];
 			String right = temp[1];
-//			String left = Side(true);
-//			String right = Side(false);
 			left.trim();
 			right.trim();
 			System.out.println(left + " = " + right);
